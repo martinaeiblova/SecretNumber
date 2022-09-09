@@ -89,5 +89,5 @@ document.querySelector(".again").addEventListener("click", function () {
     document.querySelector(".message").style.fontSize = "1rem";
     document.querySelector(".message").style.textAlign = "left";
     document.querySelector(".score").textContent = "5";
-    
+    score = 5;
 });
