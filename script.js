@@ -12,6 +12,8 @@ document.querySelector(".number").value = 26;
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 5;
+let highScore = 0;
+
 
 /*document.querySelector(".secretnumber").textContent = secretNumber;*/
 
@@ -28,6 +30,12 @@ document.querySelector(".check").addEventListener("click", function () {
         document.querySelector("body").style.backgroundColor = "#6EC270";
         document.querySelector(".message").style.fontSize = "x-large";
         document.querySelector(".message").style.textAlign = "center";
+
+        if (score > highScore) {
+            highScore = score;
+            document.querySelector(".highest").textContent = highScore;
+        }
+
     } else if (field > secretNumber) {
         if (score > 1) {
             document.querySelector(
@@ -81,4 +89,5 @@ document.querySelector(".again").addEventListener("click", function () {
     document.querySelector(".message").style.fontSize = "1rem";
     document.querySelector(".message").style.textAlign = "left";
     document.querySelector(".score").textContent = "5";
+    
 });
