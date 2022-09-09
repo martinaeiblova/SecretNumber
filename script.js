@@ -13,7 +13,9 @@ document.querySelector(".number").value = 26;
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 5;
 let highScore = 0;
-
+const displayMessage = function (message) {
+    document.querySelector(".message").textContent = message;
+};
 
 /*document.querySelector(".secretnumber").textContent = secretNumber;*/
 
@@ -22,9 +24,9 @@ document.querySelector(".check").addEventListener("click", function () {
     console.log(field, typeof field);
 
     if (!field) {
-        document.querySelector(".message").textContent = "No number!";
+        displayMessage("No number!");
     } else if (field === secretNumber) {
-        document.querySelector(".message").textContent = "Correct Number!";
+        displayMessage("Correct Number!");
         document.querySelector(".secretnumber").textContent = secretNumber;
 
         document.querySelector("body").style.backgroundColor = "#6EC270";
@@ -35,15 +37,17 @@ document.querySelector(".check").addEventListener("click", function () {
             highScore = score;
             document.querySelector(".highest").textContent = highScore;
         }
-
     } else if (field !== secretNumber) {
         if (score > 1) {
-            document.querySelector(".message").textContent = field > secretNumber ? `${field} is too high!`
-            : `${field} is too low!` ;
+            displayMessage(
+                field > secretNumber
+                    ? `${field} is too high!`
+                    : `${field} is too low!`
+            );
             score--;
             document.querySelector(".score").textContent = score;
         } else {
-            document.querySelector(".message").textContent = "You lost the game!";
+            displayMessage("You lost the game!");
             const newScore = score - 1;
             score = newScore <= 0 ? 0 : newScore;
             document.querySelector(".score").textContent = score;
@@ -51,8 +55,7 @@ document.querySelector(".check").addEventListener("click", function () {
             document.querySelector(".message").style.fontSize = "x-large";
             document.querySelector(".message").style.textAlign = "center";
         }
-    } 
-    
+    }
 });
 
 document.querySelector("#myform").addEventListener("submit", function (event) {
@@ -65,7 +68,7 @@ document.querySelector(".again").addEventListener("click", function () {
     document.querySelector("body").style.backgroundColor = "#ffffff";
     document.querySelector(".secretnumber").textContent = "?";
     document.querySelector(".score").textContent = score;
-    document.querySelector(".message").textContent = "You can start";
+    displayMessage("You can start");
     document.querySelector(".message").style.fontSize = "1rem";
     document.querySelector(".message").style.textAlign = "left";
     document.querySelector(".score").textContent = "5";
