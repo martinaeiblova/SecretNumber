@@ -36,17 +36,14 @@ document.querySelector(".check").addEventListener("click", function () {
             document.querySelector(".highest").textContent = highScore;
         }
 
-    } else if (field > secretNumber) {
+    } else if (field !== secretNumber) {
         if (score > 1) {
-            document.querySelector(
-                ".message"
-            ).textContent = `${field} is too high!`;
+            document.querySelector(".message").textContent = field > secretNumber ? `${field} is too high!`
+            : `${field} is too low!` ;
             score--;
             document.querySelector(".score").textContent = score;
         } else {
-            document.querySelector(
-                ".message"
-            ).textContent = `${field} is too high! You lost the game!`;
+            document.querySelector(".message").textContent = "You lost the game!";
             const newScore = score - 1;
             score = newScore <= 0 ? 0 : newScore;
             document.querySelector(".score").textContent = score;
@@ -54,25 +51,8 @@ document.querySelector(".check").addEventListener("click", function () {
             document.querySelector(".message").style.fontSize = "x-large";
             document.querySelector(".message").style.textAlign = "center";
         }
-    } else if (field < secretNumber) {
-        if (score > 1) {
-            document.querySelector(
-                ".message"
-            ).textContent = `${field} is too low!`;
-            score--;
-            document.querySelector(".score").textContent = score;
-        } else {
-            document.querySelector(
-                ".message"
-            ).textContent = `${field} is too low! You lost the game!`;
-            const newScore = score - 1;
-            score = newScore <= 0 ? 0 : newScore;
-            document.querySelector(".score").textContent = score;
-            document.querySelector("body").style.backgroundColor = "#D7111E";
-            document.querySelector(".message").style.fontSize = "x-large";
-            document.querySelector(".message").style.textAlign = "center";
-        }
-    }
+    } 
+    
 });
 
 document.querySelector("#myform").addEventListener("submit", function (event) {
